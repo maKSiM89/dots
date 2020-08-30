@@ -4,7 +4,7 @@ import { Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
 
 import { GameBoardService} from './game-board.service';
-import {GameSettings, Mode} from '../../shared/interfaces';
+import { GameSettings, Mode } from '../../shared/interfaces';
 import { DotsService } from '../../shared/dots.service';
 import { LeaderBoardService } from '../leader-board/leader-board.service';
 
@@ -84,12 +84,14 @@ export class GameBoardComponent implements OnInit, OnDestroy {
     this.dotsService.start(this.field, this.delay);
   }
 
-  onChange(): void {
-    this.field = this.settings[this.form.value.mode].field || 5;
-    this.delay = this.settings[this.form.value.mode].delay || 1000;
-    this.activeMode = this.settings[this.form.value.mode].name.toLowerCase();
+  onChange(value: string): void {
+    if (value) {
+      this.field = this.settings[value].field || 5;
+      this.delay = this.settings[value].delay || 1000;
+      this.activeMode = this.settings[value].name.toLowerCase();
 
-    this.dotsService.stop();
+      this.dotsService.stop();
+    }
   }
 
   onBoxClick(row: number, col: number): void {

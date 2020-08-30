@@ -2,7 +2,7 @@
   <form class="game-board-controls" (submit)="onSubmit()" [formGroup]="form">
     <mat-form-field appearance="legacy">
       <mat-label>Pick game mode</mat-label>
-      <mat-select formControlName="mode" required matInput (closed)="onChange()">
+      <mat-select formControlName="mode" required matInput (valueChange)="onChange($event)">
         <mat-option *ngFor="let item of modes" [value]="item.id">
           {{ item.name }}
         </mat-option>
