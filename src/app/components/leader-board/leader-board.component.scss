@@ -1,0 +1,16 @@
+.leader-board {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 10px;
+  height: 100%;
+  justify-content: center;
+
+  h2 {
+    text-align: center;
+  }
+
+  table {
+    width: 90%;
+  }
+}

@@ -1,0 +1,20 @@
+.dots-game-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  border: 3px solid #ccc;
+  height: 100%;
+  margin: 50px;
+
+  :first-child {
+    border-bottom: 3px solid #ccc;
+  }
+
+  @media screen and (min-width: 1024px) {
+    flex-direction: row;
+
+    :first-child {
+      border-right: 3px solid #ccc;
+    }
+  }
+}

@@ -1,0 +1,57 @@
+<div class="game-board" [ngClass]="activeMode">
+  <form class="game-board-controls" (submit)="onSubmit()" [formGroup]="form">
+    <mat-form-field appearance="legacy">
+      <mat-label>Pick game mode</mat-label>
+      <mat-select formControlName="mode" required matInput (closed)="onChange()">
+        <mat-option *ngFor="let item of modes" [value]="item.id">
+          {{ item.name }}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="mode.errors?.required">
+        Mode should not be empty
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="legacy">
+      <mat-label>Enter your name</mat-label>
+      <input
+        type="text"
+        matInput
+        formControlName="name"
+        required
+        value="Max">
+      <mat-hint align="end">{{ name.value?.length }} / 3</mat-hint>
+      <mat-error *ngIf="name.errors?.required">
+        Name should not be empty
+      </mat-error>
+      <mat-error *ngIf="name.errors?.minlength">
+        Name should contain at least 3 symbols
+      </mat-error>
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" type="submit" [disabled]="!form.valid">
+      {{ playButtonText }}
+    </button>
+  </form>
+
+  <div class="game-board-message" *ngIf="message">
+    {{ message }}
+  </div>
+
+  <div class="game-board-fields">
+    <div class="game-board-fields-wrapper">
+      <div class="row" *ngFor="let i of [].constructor(field); index as row">
+        <div
+          *ngFor="let j of [].constructor(field); index as col"
+          class="box"
+          [ngClass]="{
+            'blue': dots[row * field + col] === -1,
+            'green': dots[row * field + col] === 1,
+            'red': dots[row * field + col] === 2
+          }"
+          (click)="onBoxClick(row, col)"
+        ></div>
+      </div>
+    </div>
+  </div>
+</div>
