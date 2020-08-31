@@ -21,14 +21,14 @@
     padding: 20px;
 
     .row {
-      clear: both;
-      overflow: hidden;
+      display: flex;
+      justify-content: center;
+      align-items: center;
 
       .box {
         width: 25px;
         height: 25px;
-        float: left;
-        cursor: default;
+        cursor: pointer;
         border: 1px solid #ccc;
 
         .normal & {
